@@ -7,15 +7,22 @@ app.use(morgan("combined"));
 
 
 const Things = new Schema({
-    title: String,
-    duration: String,
+    title: {
+        type: String,
+        required: true
+    },
+    duration: {
+        type: String,
+        required: true
+    },
 
 });
 
-const dbURI =
+const dbURI = "mongodb://localhost:27017/BoredActivities"
 
-    mongoose.connect("mongodb://localhost:27017/BoredActivities").
-        catch((error) => handleError(error))
+mongoose.connect(dbURI).
+    then((response) => console.log("Connected to the database successfully")).
+    catch((error) => console.log(error))
 
 
 app.get("/", (req, res) => {
