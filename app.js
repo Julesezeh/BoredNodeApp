@@ -1,22 +1,11 @@
 const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
-const { Schema } = mongoose
 const app = express();
 app.use(morgan("combined"));
 
 
-const Things = new Schema({
-    title: {
-        type: String,
-        required: true
-    },
-    duration: {
-        type: String,
-        required: true
-    },
 
-});
 
 const dbURI = "mongodb://localhost:27017/BoredActivities"
 
