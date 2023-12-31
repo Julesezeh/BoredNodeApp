@@ -1,10 +1,21 @@
 const express = require("express");
-var morgan = require("morgan");
-
-
-
+const morgan = require("morgan");
+const mongoose = require("mongoose");
+const { Schema } = mongoose
 const app = express();
-app.use(morgan("default"));
+app.use(morgan("combined"));
+
+
+const Things = new Schema({
+    title: String,
+    duration: String,
+
+});
+
+const dbURI =
+
+    mongoose.connect("mongodb://localhost:27017/BoredActivities").
+        catch((error) => handleError(error))
 
 
 app.get("/", (req, res) => {
