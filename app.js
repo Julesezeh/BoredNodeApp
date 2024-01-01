@@ -1,13 +1,15 @@
 const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
+const Activity = require("./models/activity");
 const app = express();
+
 app.use(morgan("combined"));
 
 
 
 
-const dbURI = "mongodb://localhost:27017/BoredActivities"
+const dbURI = "mongodb://127.0.0.1:27017/BoredActivities"
 
 mongoose.connect(dbURI).
     then((response) => console.log("Connected to the database successfully")).
@@ -15,7 +17,12 @@ mongoose.connect(dbURI).
 
 
 app.get("/", (req, res) => {
-    res.send("<h1>Howdy</h1>")
+    const act = new Activity({
+        "title": "Ludo",
+        "max_duration": "600",
+        "category": "game"
+    })
+    act.save().then((response) => res.send(response)).catch((error) => { console.log(error) })
 })
 
 app.listen(3000, () => {

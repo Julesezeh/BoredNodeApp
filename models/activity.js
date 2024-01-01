@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { Schema, Model } = mongoose;
+const { Schema, model } = mongoose;
 
 
 
@@ -11,9 +11,15 @@ const ActivitySchema = new Schema({
     max_duration: {
         type: String,
         required: true
+    },
+    category: {
+        type: String
     }
 
 }, { timestamps: true });
 
 
-const Activity = Model("Activity")
+const Activity = model("Activity", ActivitySchema)
+
+
+module.exports = Activity;
