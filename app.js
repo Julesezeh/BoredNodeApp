@@ -6,7 +6,7 @@ const app = express();
 
 app.use(morgan("combined"));
 
-
+app.use(express.json());
 
 
 const dbURI = "mongodb://127.0.0.1:27017/BoredActivities"
@@ -34,10 +34,21 @@ app.get("/", (req, res) => {
 })
 
 app.post("/add_activity", (req, res) => {
-    const activity = new Activity(req.body)
-    activity.save()
-        .then((response) => { res.send(response) })
-        .catch((error) => { console.log(error) })
+    const { title, max_duration, category } = req.body;
+    if (title && max_duration && category) {
+        const thing = {
+            "title": title,
+            "max_duration": max_duration,
+            "category": category
+        }
+        const activity = new Activity(thing)
+        activity.save()
+            .then((response) => { res.send(response) })
+            .catch((error) => { console.log(error) })
+
+    } else {
+        res.status(400).send("<h1>Invalid request</h1>")
+    }
 })
 
 app.listen(3000, () => {
