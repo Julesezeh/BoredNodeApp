@@ -16,13 +16,28 @@ mongoose.connect(dbURI).
     catch((error) => console.log(error))
 
 
-app.get("/", (req, res) => {
+app.get("/add_activity", (req, res) => {
     const act = new Activity({
         "title": "Ludo",
         "max_duration": "600",
         "category": "game"
     })
-    act.save().then((response) => res.send(response)).catch((error) => { console.log(error) })
+    act.save()
+        .then((response) => res.send(response))
+        .catch((error) => { console.log(error) })
+})
+
+app.get("/", (req, res) => {
+    Activity.find()
+        .then((response) => { res.send(response) })
+        .catch((error) => console.log(error))
+})
+
+app.post("/add_activity", (req, res) => {
+    const activity = new Activity(req.body)
+    activity.save()
+        .then((response) => { res.send(response) })
+        .catch((error) => { console.log(error) })
 })
 
 app.listen(3000, () => {
