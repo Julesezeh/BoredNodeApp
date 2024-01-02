@@ -51,6 +51,23 @@ app.post("/add_activity", (req, res) => {
     }
 })
 
+app.get("/activities", (req, res) => {
+    Activity.find()
+        .then((response) => { res.status(200).send(response) })
+        .catch((error) => { console.log(error) })
+})
+
+app.get("/activities/:id", (req, res) => {
+    const { id } = req.params
+    Activity.findById(id)
+        .then((response) => {
+            res.send(response)
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+})
+
 app.listen(3000, () => {
     console.log("Server is currently listening on port " + 3000)
 })
