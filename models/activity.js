@@ -9,7 +9,7 @@ const ActivitySchema = new Schema({
         required: true
     },
     max_duration: {
-        type: String,
+        type: Number,
         required: true
     },
     category: {
