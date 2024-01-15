@@ -68,6 +68,9 @@ app.get("/activities/:id", (req, res) => {
         })
 })
 
+
+
+
 app.listen(3000, () => {
     console.log("Server is currently listening on port " + 3000)
 })
