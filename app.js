@@ -18,7 +18,7 @@ mongoose.connect(dbURI).
 
 app.get("/add_activity", (req, res) => {
     const act = new Activity({
-        "title": "Ludo",
+        "title": "Monopoly",
         "max_duration": "600",
         "category": "game"
     })
