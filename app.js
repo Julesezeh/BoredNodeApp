@@ -2,6 +2,7 @@ const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const Activity = require("./models/activity");
+const Person = require("./models/people")
 const app = express();
 
 app.use(morgan("combined"));
@@ -70,6 +71,9 @@ app.get("/activities/:id", (req, res) => {
 
 
 app.get("/hello", (req, res) => {
+    const User = new Person({
+        ""
+    })
     res.send("<h1>hello world</h1>")
 })
 
